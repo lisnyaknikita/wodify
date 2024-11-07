@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 
 import { Lexend } from 'next/font/google'
 
+import { ConvexClientProvider } from './components/convex-client-provider'
+
 import './globals.scss'
 
 export const metadata: Metadata = {
@@ -18,7 +20,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en'>
-			<body className={lexend.className}>{children}</body>
+			<body className={lexend.className}>
+				<ConvexClientProvider>{children}</ConvexClientProvider>
+			</body>
 		</html>
 	)
 }
