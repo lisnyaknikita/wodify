@@ -1,0 +1,36 @@
+.wrapper {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.inner {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.title {
+	color: var(--text);
+	font-size: 49px;
+	margin-bottom: 20px;
+}
+
+.googleButton {
+	background-color: transparent;
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	border: 1px solid var(--primary);
+	border-radius: 20px;
+	padding: 10px 20px;
+	font-size: 22px;
+	cursor: pointer;
+	color: var(--text);
+	transition: background-color 0.2s;
+
+	&:hover {
+		background-color: #ca965e;
+	}
+}
