@@ -1,10 +1,20 @@
 'use client'
 
-import { useQuery } from 'convex/react'
-import { api } from '../../convex/_generated/api'
+import { useCurrentUser } from '@/features/auth/hooks/use-current-user'
+import { useAuthActions } from '@convex-dev/auth/react'
+import { Loader } from 'lucide-react'
 
 export default function Home() {
-	const tasks = useQuery(api.tasks.get)
+	const { signOut } = useAuthActions()
 
-	return <div> {tasks?.map(({ _id, text }) => <div key={_id}>{text}</div>)}</div>
+	const { data, isLoading } = useCurrentUser()
+
+	if (isLoading) return <Loader />
+
+	return (
+		<div>
+			Hello, {data?.name}
+			<button onClick={() => void signOut()}>Logout</button>
+		</div>
+	)
 }
