@@ -1,20 +1,19 @@
-import type { Metadata } from 'next'
+'use client'
 
 import { FaGoogle } from 'react-icons/fa6'
 
+import { useAuthActions } from '@convex-dev/auth/react'
+
 import classes from './auth-page.module.scss'
 
-export const metadata: Metadata = {
-	title: 'Wodify | Sign in',
-	description: 'Sign in by Google account',
-}
-
 export default function AuthPage() {
+	const { signIn } = useAuthActions()
+
 	return (
 		<div className={classes.wrapper}>
 			<div className={classes.inner}>
 				<h1 className={classes.title}>Welcome to Wodify!</h1>
-				<button className={classes.googleButton}>
+				<button onClick={() => void signIn('google')} className={classes.googleButton}>
 					<FaGoogle />
 					<span>Sign in with Google</span>
 				</button>
