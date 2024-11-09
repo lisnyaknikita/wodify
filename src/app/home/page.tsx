@@ -1,9 +1,19 @@
+import { HomeCalendar } from './components/home-calendar/HomeCalendar'
+import { LastNote } from './components/last-note/LastNote'
+import { LastTrainingSession } from './components/last-training-session/LastTrainingSession'
+
+import classes from './home-page.module.scss'
+
 export default function HomePage() {
 	return (
-		<div>
-			{/* <Calendar/>
-			<LastTrainingSession/>
-			<LastNote/> */}
-		</div>
+		<main className={classes.main}>
+			<div className={classes.container}>
+				<HomeCalendar />
+				<section className={classes.footerSection}>
+					<LastTrainingSession />
+					<LastNote />
+				</section>
+			</div>
+		</main>
 	)
 }
