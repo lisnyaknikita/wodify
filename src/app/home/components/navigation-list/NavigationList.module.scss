@@ -1,0 +1,32 @@
+.navigationList {
+	list-style: none;
+	display: flex;
+	align-items: center;
+	gap: 20px;
+
+	@media screen and (max-width: 810px) {
+		gap: 15px;
+	}
+
+	@media screen and (max-width: 768px) {
+		display: none;
+	}
+}
+
+.navigationLink {
+	color: var(--text);
+	font-size: 26px;
+	transition: color 0.2s;
+
+	&:hover {
+		color: var(--primary);
+	}
+
+	@media screen and (max-width: 1440px) {
+		font-size: 22px;
+	}
+
+	@media screen and (max-width: 810px) {
+		font-size: 18px;
+	}
+}

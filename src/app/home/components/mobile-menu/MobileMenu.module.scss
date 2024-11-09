@@ -1,0 +1,33 @@
+.burgerBody {
+	padding: 20px 10px;
+	background-color: var(--primary);
+	color: var(--text);
+	width: 200px;
+}
+
+.navigationListMobile {
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+	font-size: 20px;
+}
+
+.navigationLink {
+	color: var(--text);
+	font-size: 26px;
+	transition: color 0.2s;
+
+	&:hover {
+		color: var(--primary);
+	}
+
+	@media screen and (max-width: 1440px) {
+		font-size: 22px;
+	}
+
+	@media screen and (max-width: 810px) {
+		font-size: 18px;
+	}
+}

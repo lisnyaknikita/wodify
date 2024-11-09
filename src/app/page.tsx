@@ -1,20 +1,27 @@
 'use client'
 
 import { useCurrentUser } from '@/features/auth/hooks/use-current-user'
-import { useAuthActions } from '@convex-dev/auth/react'
+
 import { Loader } from 'lucide-react'
 
+import { useRouter } from 'next/navigation'
+
+import { useEffect } from 'react'
+
 export default function Home() {
-	const { signOut } = useAuthActions()
+	const router = useRouter()
 
 	const { data, isLoading } = useCurrentUser()
 
-	if (isLoading) return <Loader />
+	useEffect(() => {
+		if (!isLoading) {
+			if (data) {
+				router.replace('/home')
+			} else {
+				router.replace('/auth')
+			}
+		}
+	}, [data, isLoading, router])
 
-	return (
-		<div>
-			Hello, {data?.name}
-			<button onClick={() => void signOut()}>Logout</button>
-		</div>
-	)
+	return isLoading ? <Loader /> : null
 }
