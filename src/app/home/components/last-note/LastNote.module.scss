@@ -1,4 +1,29 @@
 .lastNote {
 	flex-basis: 40%;
 	background-color: var(--primary);
+	border-radius: 20px;
+	color: var(--text);
+	padding: 20px;
+	max-height: 244px;
+	overflow-y: hidden;
+}
+
+.noteTitle {
+	font-size: 22px;
+	margin-bottom: 20px;
+}
+
+.noteText {
+	font-size: 18px;
+	max-height: 165px;
+	overflow-y: auto;
+
+	&::-webkit-scrollbar {
+		width: 1px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: #51311670;
+		border-radius: 20px;
+	}
 }
