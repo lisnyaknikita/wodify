@@ -16,3 +16,23 @@
 		height: 54px;
 	}
 }
+
+.main {
+}
+
+.container {
+	max-width: 1780px;
+	margin: 30px auto;
+	padding: 0 15px;
+}
+
+.footerSection {
+	display: flex;
+	align-items: stretch;
+	gap: 30px;
+
+	@media screen and (max-width: 768px) {
+		flex-direction: column;
+		align-items: center;
+	}
+}

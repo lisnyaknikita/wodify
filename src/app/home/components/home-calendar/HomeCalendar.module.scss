@@ -1,0 +1,88 @@
+.calendarBoard {
+	background-color: var(--primary);
+	border-radius: 20px;
+	padding: 25px 150px;
+	margin-bottom: 30px;
+
+	@media screen and (max-width: 1480px) {
+		padding: 25px 100px;
+	}
+
+	@media screen and (max-width: 1180px) {
+		padding: 15px 60px;
+	}
+
+	@media screen and (max-width: 500px) {
+		padding: 10px 30px;
+	}
+}
+
+.calendarDays {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 40px 60px;
+
+	@media screen and (max-width: 1480px) {
+		gap: 30px 50px;
+	}
+
+	@media screen and (max-width: 1180px) {
+		gap: 20px 30px;
+		justify-content: center;
+	}
+
+	@media screen and (max-width: 500px) {
+		gap: 10px 15px;
+	}
+}
+
+.calendarDay {
+	width: 240px;
+	height: 220px;
+	padding: 15px 40px;
+	background-color: var(--secondary);
+	color: var(--text);
+	border-radius: 20px;
+
+	@media screen and (max-width: 1480px) {
+		width: 200px;
+		height: 180px;
+		padding: 15px 30px;
+	}
+
+	@media screen and (max-width: 1180px) {
+		width: 160px;
+		height: 140px;
+		padding: 10px;
+	}
+}
+
+.dayHeader {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 16px;
+	margin-bottom: 30px;
+
+	@media screen and (max-width: 1480px) {
+		margin-bottom: 15px;
+		font-size: 15px;
+	}
+
+	@media screen and (max-width: 1180px) {
+		font-size: 14px;
+	}
+}
+
+.trainingSessionName {
+	font-size: 24px;
+	text-align: center;
+
+	@media screen and (max-width: 1480px) {
+		font-size: 20px;
+	}
+
+	@media screen and (max-width: 1180px) {
+		font-size: 18px;
+	}
+}

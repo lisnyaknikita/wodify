@@ -1,22 +1,19 @@
-'use client'
+import { HomeCalendar } from './components/home-calendar/HomeCalendar'
+import { LastNote } from './components/last-note/LastNote'
+import { LastTrainingSession } from './components/last-training-session/LastTrainingSession'
 
-import { useCurrentUser } from '@/features/auth/hooks/use-current-user'
-
-import { useAuthActions } from '@convex-dev/auth/react'
-
-import { Loader } from 'lucide-react'
+import classes from './home-page.module.scss'
 
 export default function HomePage() {
-	const { signOut } = useAuthActions()
-
-	const { data, isLoading } = useCurrentUser()
-
-	if (isLoading) return <Loader />
-
 	return (
-		<div>
-			Hello, {data?.name}
-			<button onClick={() => void signOut()}>Logout</button>
-		</div>
+		<main className={classes.main}>
+			<div className={classes.container}>
+				<HomeCalendar />
+				<section className={classes.footerSection}>
+					<LastTrainingSession />
+					<LastNote />
+				</section>
+			</div>
+		</main>
 	)
 }
