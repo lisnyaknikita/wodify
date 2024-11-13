@@ -1,0 +1,65 @@
+.lastTrainingSessionBoard {
+	flex-basis: 60%;
+	background-color: var(--primary);
+	padding: 20px;
+	border-radius: 20px;
+	max-height: 244px;
+	overflow-y: hidden;
+}
+
+.boardHeader {
+	display: flex;
+	width: 100%;
+	padding-bottom: 20px;
+	font-size: 22px;
+	color: var(--text);
+	border-bottom: 1px solid #a26026;
+}
+
+.headerColExercise {
+	flex-basis: 60%;
+}
+
+.headerColSets {
+	flex-basis: 20%;
+}
+
+.headerColReps {
+	flex-basis: 20%;
+}
+
+.boardExercises {
+	max-height: 172px;
+	overflow-y: auto;
+
+	&::-webkit-scrollbar {
+		width: 1px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: #51311670;
+		border-radius: 20px;
+	}
+}
+
+.boardExercise {
+	display: flex;
+	width: 100%;
+	color: var(--text);
+	font-size: 18px;
+
+	padding: 7.5px 5px;
+	border-bottom: 1px solid #a26026;
+}
+
+.exerciseName {
+	flex-basis: 60%;
+}
+
+.exerciseSets {
+	flex-basis: 20%;
+}
+
+.exerciseReps {
+	flex-basis: 20%;
+}

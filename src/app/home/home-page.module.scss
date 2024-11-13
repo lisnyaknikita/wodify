@@ -17,8 +17,17 @@
 	}
 }
 
+.main {
+}
+
 .container {
 	max-width: 1780px;
 	margin: 30px auto;
 	padding: 0 15px;
+}
+
+.footerSection {
+	display: flex;
+	align-items: flex-start;
+	gap: 30px;
 }

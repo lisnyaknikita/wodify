@@ -1,3 +1,5 @@
+import classes from './LastNote.module.scss'
+
 export const LastNote = () => {
-	return <div>LastNote</div>
+	return <div className={classes.lastNote}>LastNote</div>
 }
