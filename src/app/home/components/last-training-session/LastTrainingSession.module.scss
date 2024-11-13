@@ -5,6 +5,21 @@
 	border-radius: 20px;
 	max-height: 244px;
 	overflow-y: hidden;
+
+	@media screen and (max-width: 1300px) {
+		flex-basis: 70%;
+	}
+
+	@media screen and (max-width: 768px) {
+		flex-basis: 100%;
+		width: 100%;
+		max-height: 232px;
+	}
+
+	@media screen and (max-width: 400px) {
+		padding: 10px;
+		max-height: 207px;
+	}
 }
 
 .boardHeader {
@@ -14,18 +29,39 @@
 	font-size: 22px;
 	color: var(--text);
 	border-bottom: 1px solid #a26026;
+
+	@media screen and (max-width: 900px) {
+		font-size: 20px;
+		padding-bottom: 10px;
+	}
+
+	@media screen and (max-width: 400px) {
+		font-size: 18px;
+	}
 }
 
 .headerColExercise {
 	flex-basis: 60%;
+
+	@media screen and (max-width: 400px) {
+		flex-basis: 50%;
+	}
 }
 
 .headerColSets {
 	flex-basis: 20%;
+
+	@media screen and (max-width: 400px) {
+		flex-basis: 25%;
+	}
 }
 
 .headerColReps {
 	flex-basis: 20%;
+
+	@media screen and (max-width: 400px) {
+		flex-basis: 25%;
+	}
 }
 
 .boardExercises {
@@ -50,16 +86,32 @@
 
 	padding: 7.5px 5px;
 	border-bottom: 1px solid #a26026;
+
+	@media screen and (max-width: 400px) {
+		font-size: 16px;
+	}
 }
 
 .exerciseName {
 	flex-basis: 60%;
+
+	@media screen and (max-width: 400px) {
+		flex-basis: 50%;
+	}
 }
 
 .exerciseSets {
 	flex-basis: 20%;
+
+	@media screen and (max-width: 400px) {
+		flex-basis: 25%;
+	}
 }
 
 .exerciseReps {
 	flex-basis: 20%;
+
+	@media screen and (max-width: 400px) {
+		flex-basis: 25%;
+	}
 }
