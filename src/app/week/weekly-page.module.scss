@@ -10,6 +10,12 @@
 	justify-content: space-between;
 }
 
+.main {
+	@media screen and (max-width: 1190px) {
+		padding-bottom: 30px;
+	}
+}
+
 .logo {
 	@media screen and (max-width: 1024px) {
 		width: 60px;

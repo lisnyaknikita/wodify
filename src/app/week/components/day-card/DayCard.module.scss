@@ -13,6 +13,10 @@
 	text-align: center;
 	font-size: 18px;
 	margin-bottom: 15px;
+
+	@media screen and (max-width: 768px) {
+		font-size: 16px;
+	}
 }
 
 .name {
@@ -20,6 +24,14 @@
 	line-height: 1.2;
 	margin-bottom: 25px;
 	text-align: center;
+
+	@media screen and (max-width: 900px) {
+		font-size: 26px;
+	}
+
+	@media screen and (max-width: 768px) {
+		font-size: 24px;
+	}
 }
 
 .plan {
@@ -29,16 +41,25 @@
 .planLabel {
 	font-size: 22px;
 	text-align: center;
+
+	@media screen and (max-width: 768px) {
+		font-size: 20px;
+	}
 }
 
 .planRow {
 	display: block;
 	font-size: 18px;
 	margin-bottom: 5px;
+
+	@media screen and (max-width: 768px) {
+		font-size: 16px;
+	}
 }
 
 .noteLink {
 	padding: 5px 35px;
+	font-size: 18px;
 	background-color: var(--primary);
 	color: var(--background);
 	border-radius: 20px;
@@ -48,5 +69,9 @@
 
 	&:hover {
 		background-color: #966d41;
+	}
+
+	@media screen and (max-width: 768px) {
+		font-size: 16px;
 	}
 }
