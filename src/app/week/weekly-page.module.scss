@@ -10,6 +10,12 @@
 	justify-content: space-between;
 }
 
+.main {
+	@media screen and (max-width: 1190px) {
+		padding-bottom: 30px;
+	}
+}
+
 .logo {
 	@media screen and (max-width: 1024px) {
 		width: 60px;
@@ -21,15 +27,4 @@
 	max-width: 1780px;
 	margin: 30px auto;
 	padding: 0 15px;
-}
-
-.footerSection {
-	display: flex;
-	align-items: stretch;
-	gap: 30px;
-
-	@media screen and (max-width: 768px) {
-		flex-direction: column;
-		align-items: center;
-	}
 }
