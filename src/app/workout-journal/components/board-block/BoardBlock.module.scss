@@ -1,0 +1,88 @@
+.boardBlock {
+	flex-basis: 50%;
+}
+
+.blockTitle {
+	text-align: center;
+	font-size: 32px;
+	color: var(--text);
+	margin-bottom: 40px;
+
+	@media screen and (max-width: 1280px) {
+		font-size: 28px;
+	}
+
+	@media screen and (max-width: 768px) {
+		font-size: 24px;
+		margin-bottom: 20px;
+	}
+
+	@media screen and (max-width: 480px) {
+		font-size: 22px;
+	}
+}
+
+.blockTable {
+}
+
+.blockHeader {
+	display: flex;
+	align-items: center;
+	font-weight: 700;
+	font-size: 24px;
+	margin-bottom: 30px;
+
+	@media screen and (max-width: 768px) {
+		font-size: 20px;
+		margin-bottom: 20px;
+	}
+
+	@media screen and (max-width: 480px) {
+		font-size: 18px;
+	}
+}
+
+.headerColExercise {
+	flex-basis: 60%;
+
+	@media screen and (max-width: 1440px) {
+		flex-basis: 50%;
+	}
+}
+
+.headerColSets {
+	flex-basis: 20%;
+
+	@media screen and (max-width: 1440px) {
+		flex-basis: 25%;
+	}
+}
+
+.headerColReps {
+	flex-basis: 20%;
+
+	@media screen and (max-width: 1440px) {
+		flex-basis: 25%;
+	}
+}
+
+.blockExercises {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.addExercise {
+	margin-top: 20px;
+	color: var(--secondary);
+	font-size: 16px;
+	transition: color 0.2s;
+
+	&:hover {
+		color: #b7cd66;
+	}
+
+	@media screen and (max-width: 768px) {
+		font-size: 14px;
+	}
+}
