@@ -1,5 +1,7 @@
 import Link from 'next/link'
+
 import { BoardBlock } from './components/board-block/BoardBlock'
+
 import classes from './workout-journal.module.scss'
 
 export default function WorkoutJournalPage() {
