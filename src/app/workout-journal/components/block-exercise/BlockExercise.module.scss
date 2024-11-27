@@ -13,15 +13,39 @@
 }
 
 .exerciseName {
-	flex-basis: 60%;
+	flex-basis: 55%;
 
 	@media screen and (max-width: 1440px) {
 		flex-basis: 50%;
 	}
 }
 
+.exerciseWeight {
+	flex-basis: 15%;
+
+	> input {
+		width: auto;
+		max-width: 40px;
+		background-color: transparent;
+		text-align: right;
+	}
+
+	> span {
+		margin-left: 4px;
+	}
+
+	@media screen and (max-width: 1440px) {
+		flex-basis: 20%;
+	}
+}
+
 .exerciseSets {
-	flex-basis: 20%;
+	flex-basis: 15%;
+
+	> input {
+		width: 60px;
+		background-color: transparent;
+	}
 
 	@media screen and (max-width: 1440px) {
 		flex-basis: 20%;
@@ -29,7 +53,12 @@
 }
 
 .exerciseReps {
-	flex-basis: 20%;
+	flex-basis: 15%;
+
+	> input {
+		width: 60px;
+		background-color: transparent;
+	}
 
 	@media screen and (max-width: 1440px) {
 		flex-basis: 20%;

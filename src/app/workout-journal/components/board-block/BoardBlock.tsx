@@ -12,6 +12,7 @@ export const BoardBlock = ({ mode }: IBoardBlockProps) => {
 			<div className={classes.blockTable}>
 				<div className={classes.blockHeader}>
 					<div className={classes.headerColExercise}>Exercise</div>
+					<div className={classes.headerColWeight}>Weight</div>
 					<div className={classes.headerColSets}>Sets</div>
 					<div className={classes.headerColReps}>Repetitions</div>
 				</div>

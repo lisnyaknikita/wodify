@@ -23,6 +23,7 @@
 }
 
 .blockTable {
+	padding-right: 20px;
 }
 
 .blockHeader {
@@ -43,15 +44,23 @@
 }
 
 .headerColExercise {
-	flex-basis: 60%;
+	flex-basis: 55%;
 
 	@media screen and (max-width: 1440px) {
 		flex-basis: 50%;
 	}
 }
 
+.headerColWeight {
+	flex-basis: 15%;
+
+	@media screen and (max-width: 1440px) {
+		flex-basis: 25%;
+	}
+}
+
 .headerColSets {
-	flex-basis: 20%;
+	flex-basis: 15%;
 
 	@media screen and (max-width: 1440px) {
 		flex-basis: 25%;
@@ -59,7 +68,7 @@
 }
 
 .headerColReps {
-	flex-basis: 20%;
+	flex-basis: 15%;
 
 	@media screen and (max-width: 1440px) {
 		flex-basis: 25%;
