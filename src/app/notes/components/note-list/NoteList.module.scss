@@ -36,6 +36,26 @@
 			border-top-left-radius: 0px;
 		}
 	}
+
+	@media screen and (max-width: 768px) {
+		& + .noteItem {
+			margin-top: 20px;
+		}
+
+		> a {
+			font-size: 20px;
+		}
+	}
+
+	@media screen and (max-width: 500px) {
+		& + .noteItem {
+			margin-top: 10px;
+		}
+
+		> a {
+			font-size: 16px;
+		}
+	}
 }
 
 .noteLink {
@@ -49,8 +69,10 @@
 	white-space: nowrap;
 	transition: background-color 0.2s;
 
-	&:hover {
-		background-color: #a16f39;
+	@media screen and (min-width: 769px) {
+		&:hover {
+			background-color: #a16f39;
+		}
 	}
 
 	@media screen and (max-width: 1440px) {
