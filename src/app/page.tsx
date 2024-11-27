@@ -23,5 +23,5 @@ export default function Home() {
 		}
 	}, [data, isLoading, router])
 
-	return isLoading ? <Loader /> : null
+	return isLoading ? <Loader className='loader' /> : null
 }

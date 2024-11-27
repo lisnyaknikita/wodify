@@ -1,15 +1,21 @@
+'use client'
+
 import { PopoverBody, PopoverContent, PopoverRoot, PopoverTrigger } from '@/components/ui/popover'
 
 import { Menu } from 'lucide-react'
 
 import Link from 'next/link'
 
+import { useIsMobile } from '@/shared/useIsMobile'
+
 import classes from './MobileMenu.module.scss'
 
 export const MobileMenu = () => {
-	return (
+	const isMobile = useIsMobile()
+
+	return isMobile ? (
 		<PopoverRoot>
-			<PopoverTrigger display={{ base: 'block', md: 'none' }}>
+			<PopoverTrigger>
 				<Menu />
 			</PopoverTrigger>
 			<PopoverContent style={{ borderRadius: 20, width: 200 }}>
@@ -39,5 +45,5 @@ export const MobileMenu = () => {
 				</PopoverBody>
 			</PopoverContent>
 		</PopoverRoot>
-	)
+	) : null
 }
