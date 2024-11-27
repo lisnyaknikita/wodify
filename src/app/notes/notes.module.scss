@@ -1,0 +1,55 @@
+.wrapper {
+	width: 100%;
+	height: 100%;
+}
+
+.header {
+	padding: 20px 20px 0 20px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.main {
+}
+
+.logo {
+	@media screen and (max-width: 1024px) {
+		width: 60px;
+		height: 54px;
+	}
+}
+
+.container {
+	max-width: 1780px;
+	margin: 30px auto;
+	padding: 0 15px;
+}
+
+.inner {
+	display: flex;
+	gap: 36px;
+	align-items: flex-start;
+
+	@media screen and (max-width: 1024px) {
+		gap: 20px;
+	}
+}
+
+.drawerOpenButton {
+	background-color: transparent;
+}
+
+.drawerInner {
+	background-color: var(--primary);
+	padding: 20px;
+	color: var(--text);
+}
+
+.drawerHeader {
+	margin-bottom: 20px;
+
+	> h2 {
+		font-size: 28px;
+	}
+}
