@@ -1,4 +1,5 @@
 import { BlockExercise } from '../block-exercise/BlockExercise'
+
 import classes from './BoardBlock.module.scss'
 
 interface IBoardBlockProps {
