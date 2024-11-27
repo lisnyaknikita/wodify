@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+
 import { NoteContent } from './components/note-content/NoteContent'
 import { NoteList } from './components/note-list/NoteList'
 
@@ -15,8 +16,10 @@ import {
 	DrawerTitle,
 	DrawerTrigger,
 } from '@/components/ui/drawer'
-import { useIsMobile } from '@/shared/useIsMobile'
 import { Menu } from 'lucide-react'
+
+import { useIsMobile } from '@/shared/useIsMobile'
+
 import classes from './notes.module.scss'
 
 export default function NotesPage() {
