@@ -1,16 +1,30 @@
+import { ISession } from '@/shared/types/session'
+
+import { Loader } from 'lucide-react'
+
 import classes from './LastNote.module.scss'
 
-export const LastNote = () => {
+interface ILastNoteProps {
+	lastSession: { data: ISession | null | undefined; isLoading: boolean }
+}
+
+export const LastNote = ({ lastSession }: ILastNoteProps) => {
+	if (lastSession.isLoading) {
+		return (
+			<div className={classes.lastNote}>
+				<Loader className='loader' />
+			</div>
+		)
+	}
+
+	if (!lastSession.data) {
+		return <div className={classes.lastNote}>No note available</div>
+	}
+
 	return (
 		<div className={classes.lastNote}>
-			<h3 className={classes.noteTitle}>Note from Legs session(November, 06)</h3>
-			<p className={classes.noteText}>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni mollitia magnam recusandae aperiam vitae sapiente
-				rerum nihil quos iusto rem quas delectus numquam ipsum accusamus, nesciunt molestiae! Consectetur atque in hic
-				consequatur distinctio alias adipisci sequi praesentium quos nostrum repellat libero veniam, corrupti
-				reprehenderit maxime, ad doloremque accusamus optio similique illum cupiditate. Laudantium nostrum vel quia eius
-				numquam placeat accusamus.
-			</p>
+			<h3 className={classes.noteTitle}>Note from {`${lastSession.data.title}(${lastSession.data.date})`}</h3>
+			<p className={classes.noteText}>{lastSession.data.note.content}</p>
 		</div>
 	)
 }

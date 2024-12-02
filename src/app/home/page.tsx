@@ -1,6 +1,7 @@
 'use client'
 
 import { useGetSession } from '@/shared/hooks/useGetSession'
+
 import { HomeCalendar } from './components/home-calendar/HomeCalendar'
 import { LastNote } from './components/last-note/LastNote'
 import { LastTrainingSession } from './components/last-training-session/LastTrainingSession'
@@ -16,7 +17,7 @@ export default function HomePage() {
 				<HomeCalendar />
 				<section className={classes.footerSection}>
 					<LastTrainingSession lastSession={session} />
-					<LastNote />
+					<LastNote lastSession={session} />
 				</section>
 			</div>
 		</main>
