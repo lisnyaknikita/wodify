@@ -18,7 +18,7 @@ import {
 } from '@/components/ui/drawer'
 import { Menu } from 'lucide-react'
 
-import { useIsMobile } from '@/shared/useIsMobile'
+import { useIsMobile } from '@/shared/hooks/useIsMobile'
 
 import classes from './notes.module.scss'
 

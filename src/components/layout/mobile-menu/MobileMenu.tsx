@@ -6,7 +6,7 @@ import { Menu } from 'lucide-react'
 
 import Link from 'next/link'
 
-import { useIsMobile } from '@/shared/useIsMobile'
+import { useIsMobile } from '@/shared/hooks/useIsMobile'
 
 import classes from './MobileMenu.module.scss'
 

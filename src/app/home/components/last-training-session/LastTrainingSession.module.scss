@@ -5,6 +5,7 @@
 	border-radius: 20px;
 	max-height: 244px;
 	overflow-y: hidden;
+	position: relative;
 
 	@media screen and (max-width: 1300px) {
 		flex-basis: 70%;
