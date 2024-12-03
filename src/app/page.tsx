@@ -12,6 +12,7 @@ export default function Home() {
 	const router = useRouter()
 
 	const { data, isLoading } = useCurrentUser()
+	console.log(data)
 
 	useEffect(() => {
 		if (!isLoading) {
