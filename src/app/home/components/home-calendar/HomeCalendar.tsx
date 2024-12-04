@@ -15,7 +15,7 @@ export const HomeCalendar = () => {
 	const endDate = currentWeek[currentWeek.length - 1].date
 	const { data: sessions, isLoading } = useGetSessionsByWeek({ startDate, endDate })
 
-	const today = new Date().toISOString().split('T')[0]
+	const today = format(new Date(), 'yyyy-MM-dd')
 
 	//@ts-expect-error ...
 	const sessionsByDate: Record<string, string> = sessions?.reduce((acc, session) => {

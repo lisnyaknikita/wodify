@@ -37,3 +37,23 @@ export const getSessionsByWeek = query({
 		return sessions
 	},
 })
+
+export const getLastSession = query({
+	handler: async ctx => {
+		const userId = await auth.getUserId(ctx)
+
+		if (!userId) {
+			return null
+		}
+
+		const today = new Date().toISOString().split('T')[0]
+
+		const lastSession = await ctx.db
+			.query('sessions')
+			.withIndex('by_user_id_date', q => q.eq('userId', userId).lt('date', today))
+			.order('desc')
+			.first()
+
+		return lastSession || null
+	},
+})
