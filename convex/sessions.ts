@@ -1,5 +1,5 @@
 import { v } from 'convex/values'
-import { query } from './_generated/server'
+import { mutation, query } from './_generated/server'
 import { auth } from './auth'
 
 export const getSessionByDate = query({
@@ -55,5 +55,27 @@ export const getLastSession = query({
 			.first()
 
 		return lastSession || null
+	},
+})
+
+export const createSession = mutation({
+	args: { date: v.string(), title: v.string() },
+	handler: async (ctx, args) => {
+		const userId = await auth.getUserId(ctx)
+
+		if (!userId) {
+			throw new Error('User is not authenticated')
+		}
+
+		const sessionId = await ctx.db.insert('sessions', {
+			date: args.date,
+			title: args.title,
+			userId: userId,
+			plan: [],
+			completed: [],
+			note: { id: '', content: '' },
+		})
+
+		return sessionId
 	},
 })
