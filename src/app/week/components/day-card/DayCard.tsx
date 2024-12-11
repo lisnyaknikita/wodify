@@ -23,6 +23,7 @@ interface IDayCardProps {
 }
 
 export const DayCard = ({ day, sessions }: IDayCardProps) => {
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [_isPopoverOpen, setPopoverOpen] = useState(false)
 	const [sessionTitle, setSessionTitle] = useState('')
 
