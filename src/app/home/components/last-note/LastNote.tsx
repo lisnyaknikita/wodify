@@ -2,6 +2,8 @@ import { ISession } from '@/shared/types/session'
 
 import { Loader } from 'lucide-react'
 
+import { format, parseISO } from 'date-fns'
+
 import classes from './LastNote.module.scss'
 
 interface ILastNoteProps {
@@ -20,10 +22,11 @@ export const LastNote = ({ lastSession }: ILastNoteProps) => {
 	if (!lastSession.data) {
 		return <div className={classes.lastNote}>No note available</div>
 	}
-
 	return (
 		<div className={classes.lastNote}>
-			<h3 className={classes.noteTitle}>Note from {`${lastSession.data.title}(${lastSession.data.date})`}</h3>
+			<h3 className={classes.noteTitle}>
+				Note from {`${lastSession.data.title}(${format(parseISO(lastSession.data.date), 'MMMM, dd')})`}
+			</h3>
 			<p className={classes.noteText}>{lastSession.data.note.content}</p>
 		</div>
 	)
