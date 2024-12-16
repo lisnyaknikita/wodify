@@ -3,13 +3,14 @@ import { useAddExercise } from '@/shared/hooks/useAddExercise'
 import { IExercise, IProgressExercise } from '@/shared/types/exercise'
 import { Loader } from 'lucide-react'
 import { useState } from 'react'
+import { Id } from '../../../../../../convex/_generated/dataModel'
 import { BlockExercise } from '../block-exercise/BlockExercise'
 import classes from './BoardBlock.module.scss'
 
 interface IBoardBlockProps {
 	mode: 'planned' | 'completed'
 	exercises: IExercise[] | IProgressExercise[] | undefined
-	sessionId: string | undefined
+	sessionId: Id<'sessions'> | undefined
 }
 
 export const BoardBlock = ({ mode, exercises, sessionId }: IBoardBlockProps) => {
@@ -57,7 +58,9 @@ export const BoardBlock = ({ mode, exercises, sessionId }: IBoardBlockProps) => 
 				) : (
 					<ul className={classes.blockExercises}>
 						{!exercises && <Loader />}
-						{exercises?.map((item, index) => <BlockExercise key={index} mode={mode} data={item} />)}
+						{exercises?.map((item, index) => (
+							<BlockExercise key={index} mode={mode} data={item} sessionId={sessionId} index={index} />
+						))}
 					</ul>
 				)}
 			</div>

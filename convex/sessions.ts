@@ -120,3 +120,55 @@ export const addExercise = mutation({
 		return { success: true }
 	},
 })
+
+export const updateExerciseValues = mutation({
+	args: {
+		sessionId: v.id('sessions'),
+		exerciseIndex: v.number(),
+		mode: v.string(),
+		weight: v.optional(v.number()),
+		sets: v.optional(v.number()),
+		reps: v.optional(v.number()),
+	},
+	handler: async (ctx, { sessionId, exerciseIndex, mode, weight, sets, reps }) => {
+		const session = await ctx.db.get(sessionId)
+		if (!session) {
+			throw new Error('Session not found')
+		}
+
+		const updatedPlan = [...(session.plan || [])]
+		const updatedCompleted = [...(session.completed || [])]
+
+		if (mode === 'planned') {
+			// Обновляем только план
+			if (updatedPlan[exerciseIndex]) {
+				if (weight !== undefined) updatedPlan[exerciseIndex].weight = weight
+				if (sets !== undefined) updatedPlan[exerciseIndex].sets = sets
+				if (reps !== undefined) updatedPlan[exerciseIndex].reps = reps
+			}
+
+			// Синхронизация completed только если значения совпадают
+			if (updatedCompleted[exerciseIndex]) {
+				const completedExercise = updatedCompleted[exerciseIndex]
+
+				if (
+					completedExercise.weight === updatedPlan[exerciseIndex].weight &&
+					completedExercise.sets === updatedPlan[exerciseIndex].sets &&
+					completedExercise.reps === updatedPlan[exerciseIndex].reps
+				) {
+					updatedCompleted[exerciseIndex] = { ...updatedPlan[exerciseIndex] }
+				}
+			}
+		} else if (mode === 'completed') {
+			if (updatedCompleted[exerciseIndex]) {
+				if (weight !== undefined) updatedCompleted[exerciseIndex].weight = weight
+				if (sets !== undefined) updatedCompleted[exerciseIndex].sets = sets
+				if (reps !== undefined) updatedCompleted[exerciseIndex].reps = reps
+			}
+		}
+
+		await ctx.db.patch(sessionId, { plan: updatedPlan, completed: updatedCompleted })
+
+		return { success: true }
+	},
+})
