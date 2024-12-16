@@ -1,12 +1,13 @@
+import { IExercise, IProgressExercise } from '@/shared/types/exercise'
 import { BlockExercise } from '../block-exercise/BlockExercise'
-
 import classes from './BoardBlock.module.scss'
 
 interface IBoardBlockProps {
 	mode: 'planned' | 'completed'
+	exercises: IExercise[] | IProgressExercise[] | undefined
 }
 
-export const BoardBlock = ({ mode }: IBoardBlockProps) => {
+export const BoardBlock = ({ mode, exercises }: IBoardBlockProps) => {
 	return (
 		<div className={classes.boardBlock}>
 			<h2 className={classes.blockTitle}>{`${mode === 'planned' ? 'Planned' : 'Completed'}`}</h2>
@@ -18,9 +19,10 @@ export const BoardBlock = ({ mode }: IBoardBlockProps) => {
 					<div className={classes.headerColReps}>Repetitions</div>
 				</div>
 				<ul className={classes.blockExercises}>
-					<BlockExercise />
-					<BlockExercise />
-					{/* TODO: pass mode to  BlockExercise*/}
+					{mode === 'planned' &&
+						exercises?.map((item, index) => <BlockExercise key={index} mode='planned' data={item} />)}
+					{mode === 'completed' &&
+						exercises?.map((item, index) => <BlockExercise key={index} mode='completed' data={item} />)}
 				</ul>
 			</div>
 			{mode === 'planned' && <button className={classes.addExercise}>Add exercise</button>}

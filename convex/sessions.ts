@@ -58,6 +58,22 @@ export const getLastSession = query({
 	},
 })
 
+export const getSessionExercises = query({
+	args: { sessionId: v.id('sessions') },
+	handler: async (ctx, { sessionId }) => {
+		const session = await ctx.db.get(sessionId)
+
+		if (!session) {
+			throw new Error('Session not found')
+		}
+
+		return {
+			plan: session.plan || [],
+			completed: session.completed || [],
+		}
+	},
+})
+
 export const createSession = mutation({
 	args: { date: v.string(), title: v.string() },
 	handler: async (ctx, args) => {
@@ -77,5 +93,27 @@ export const createSession = mutation({
 		})
 
 		return sessionId
+	},
+})
+
+export const addExercise = mutation({
+	args: {
+		sessionId: v.id('sessions'),
+		exercise: v.string(),
+		sets: v.number(),
+		reps: v.number(),
+		weight: v.number(),
+	},
+	handler: async (ctx, { sessionId, exercise, sets, reps, weight }) => {
+		const session = await ctx.db.get(sessionId)
+		if (!session) {
+			throw new Error('Session not found')
+		}
+
+		const updatedPlanned = [...(session.plan || []), { exercise, sets, reps, weight }]
+
+		await ctx.db.patch(sessionId, { plan: updatedPlanned })
+
+		return { success: true }
 	},
 })
