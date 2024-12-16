@@ -110,9 +110,12 @@ export const addExercise = mutation({
 			throw new Error('Session not found')
 		}
 
-		const updatedPlanned = [...(session.plan || []), { exercise, sets, reps, weight }]
+		const newExercise = { exercise, sets, reps, weight }
 
-		await ctx.db.patch(sessionId, { plan: updatedPlanned })
+		const updatedPlanned = [...(session.plan || []), newExercise]
+		const updatedCompleted = [...(session.completed || []), newExercise]
+
+		await ctx.db.patch(sessionId, { plan: updatedPlanned, completed: updatedCompleted })
 
 		return { success: true }
 	},

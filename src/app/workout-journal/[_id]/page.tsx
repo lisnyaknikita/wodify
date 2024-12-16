@@ -20,8 +20,8 @@ export default function WorkoutJournalPage() {
 		<main className={classes.main}>
 			<div className={classes.container}>
 				<div className={classes.journalBoard}>
-					<BoardBlock mode='planned' exercises={todaySession.data?.plan} />
-					<BoardBlock mode='completed' exercises={progress} />
+					<BoardBlock mode='planned' exercises={todaySession.data?.plan} sessionId={todaySession.data?._id} />
+					<BoardBlock mode='completed' exercises={progress} sessionId={todaySession.data?._id} />
 					<Link className={classes.noteLink} href={'/note/1'}>
 						Note
 					</Link>
