@@ -5,23 +5,28 @@ import Link from 'next/link'
 import { BoardBlock } from './components/board-block/BoardBlock'
 
 import { calculateProgress } from '@/shared/helpers/calculateProgress'
-import { useGetSession } from '@/shared/hooks/useGetSession'
-import { format } from 'date-fns'
+import { useGetSessionById } from '@/shared/hooks/useGetSessionById'
+import { Loader } from 'lucide-react'
+import { useParams } from 'next/navigation'
 import classes from './workout-journal.module.scss'
 
 export default function WorkoutJournalPage() {
-	const today = format(new Date(), 'yyyy-MM-dd')
+	const { _id } = useParams()
 
-	const todaySession = useGetSession({ date: today })
+	const { data: session, isLoading } = useGetSessionById({ sessionId: _id })
 
-	const progress = calculateProgress(todaySession.data?.plan || [], todaySession.data?.completed || [])
+	if (isLoading || !session) {
+		return <Loader className='loader' />
+	}
+
+	const progress = calculateProgress(session?.plan || [], session?.completed || [])
 
 	return (
 		<main className={classes.main}>
 			<div className={classes.container}>
 				<div className={classes.journalBoard}>
-					<BoardBlock mode='planned' exercises={todaySession.data?.plan} sessionId={todaySession.data?._id} />
-					<BoardBlock mode='completed' exercises={progress} sessionId={todaySession.data?._id} />
+					<BoardBlock mode='planned' exercises={session?.plan} sessionId={session?._id} />
+					<BoardBlock mode='completed' exercises={progress} sessionId={session?._id} />
 					<Link className={classes.noteLink} href={'/note/1'}>
 						Note
 					</Link>

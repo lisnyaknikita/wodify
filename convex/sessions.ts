@@ -20,6 +20,24 @@ export const getSessionByDate = query({
 	},
 })
 
+export const getSessionById = query({
+	args: { sessionId: v.id('sessions') },
+	handler: async (ctx, args) => {
+		const userId = await auth.getUserId(ctx)
+		if (!userId) {
+			return null
+		}
+
+		const session = await ctx.db.get(args.sessionId)
+
+		if (session?.userId !== userId) {
+			throw new Error('Unauthorized access')
+		}
+
+		return session
+	},
+})
+
 export const getSessionsByWeek = query({
 	args: { startDate: v.string(), endDate: v.string() },
 	handler: async (ctx, args) => {
@@ -140,14 +158,12 @@ export const updateExerciseValues = mutation({
 		const updatedCompleted = [...(session.completed || [])]
 
 		if (mode === 'planned') {
-			// Обновляем только план
 			if (updatedPlan[exerciseIndex]) {
 				if (weight !== undefined) updatedPlan[exerciseIndex].weight = weight
 				if (sets !== undefined) updatedPlan[exerciseIndex].sets = sets
 				if (reps !== undefined) updatedPlan[exerciseIndex].reps = reps
 			}
 
-			// Синхронизация completed только если значения совпадают
 			if (updatedCompleted[exerciseIndex]) {
 				const completedExercise = updatedCompleted[exerciseIndex]
 
