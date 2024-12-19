@@ -19,8 +19,24 @@ export const BlockExercise = ({ mode, data, sessionId, index }: IBlockExercisePr
 
 	const formatDifference = (difference: number) => (difference > 0 ? `+${difference}` : difference.toString())
 
-	const [isModalOpen, setIsModalOpen] = useState(false)
+	const [isWeightModalOpen, setWeightModalOpen] = useState(false)
+	const [isSetsModalOpen, setSetsModalOpen] = useState(false)
+	const [isRepsModalOpen, setRepsModalOpen] = useState(false)
+
 	const [inputValue, setInputValue] = useState('')
+
+	const handleCloseModal = () => {
+		setInputValue('')
+		setWeightModalOpen(false)
+		setSetsModalOpen(false)
+		setRepsModalOpen(false)
+	}
+
+	const handleOpenModal = (field: 'weight' | 'sets' | 'reps') => {
+		if (field === 'weight') setWeightModalOpen(true)
+		if (field === 'sets') setSetsModalOpen(true)
+		if (field === 'reps') setRepsModalOpen(true)
+	}
 
 	const handleSave = async (field: 'weight' | 'sets' | 'reps') => {
 		if (!sessionId) return
@@ -35,7 +51,7 @@ export const BlockExercise = ({ mode, data, sessionId, index }: IBlockExercisePr
 				exerciseIndex: index,
 				[field]: updatedValue,
 			})
-			setIsModalOpen(false)
+			handleCloseModal()
 		} catch (error) {
 			console.error('Error saving updated value:', error)
 		}
@@ -47,9 +63,13 @@ export const BlockExercise = ({ mode, data, sessionId, index }: IBlockExercisePr
 			<div className={classes.exerciseWeight}>
 				{mode === 'completed' && typeof data.weight === 'object' && 'actual' in data.weight ? (
 					<>
-						<DialogRoot open={isModalOpen} onOpenChange={details => setIsModalOpen(details.open)} placement={'center'}>
+						<DialogRoot
+							open={isWeightModalOpen}
+							onOpenChange={details => setWeightModalOpen(details.open)}
+							placement={'center'}
+						>
 							<DialogTrigger asChild>
-								<button className={classes.editButton}>
+								<button onClick={() => handleOpenModal('weight')} className={classes.editButton}>
 									{data.weight.actual} kg ({formatDifference(data.weight.difference)})
 								</button>
 							</DialogTrigger>
@@ -62,6 +82,7 @@ export const BlockExercise = ({ mode, data, sessionId, index }: IBlockExercisePr
 										type='number'
 										className={classes.inputField}
 										placeholder='Enter weight'
+										defaultValue={data.weight.actual}
 										value={inputValue}
 										onChange={e => setInputValue(e.target.value)}
 										onKeyDown={e => {
@@ -79,14 +100,19 @@ export const BlockExercise = ({ mode, data, sessionId, index }: IBlockExercisePr
 							type='number'
 							defaultValue={data.weight as number}
 							maxLength={3}
-							onBlur={e =>
+							onBlur={e => {
+								if (!sessionId) {
+									console.error('Session ID is undefined')
+									return
+								}
+
 								handleUpdate({
 									sessionId,
 									exerciseIndex: index,
 									weight: parseInt(e.target.value, 10),
 									mode,
 								})
-							}
+							}}
 						/>
 						<span>kg</span>
 					</>
@@ -95,10 +121,13 @@ export const BlockExercise = ({ mode, data, sessionId, index }: IBlockExercisePr
 			<div className={classes.exerciseSets}>
 				{mode === 'completed' && typeof data.sets === 'object' && 'actual' in data.sets ? (
 					<>
-						{/* TODO: fix modal window open/close and input values */}
-						<DialogRoot placement={'center'}>
+						<DialogRoot
+							open={isSetsModalOpen}
+							onOpenChange={details => setSetsModalOpen(details.open)}
+							placement={'center'}
+						>
 							<DialogTrigger asChild>
-								<button className={classes.editButton}>
+								<button onClick={() => handleOpenModal('sets')} className={classes.editButton}>
 									{data.sets.actual} ({formatDifference(data.sets.difference)})
 								</button>
 							</DialogTrigger>
@@ -111,6 +140,7 @@ export const BlockExercise = ({ mode, data, sessionId, index }: IBlockExercisePr
 										type='number'
 										className={classes.inputField}
 										placeholder='Enter sets count'
+										defaultValue={data.sets.actual}
 										value={inputValue}
 										onChange={e => setInputValue(e.target.value)}
 										onKeyDown={e => {
@@ -126,23 +156,32 @@ export const BlockExercise = ({ mode, data, sessionId, index }: IBlockExercisePr
 					<input
 						type='number'
 						defaultValue={typeof data.sets === 'number' ? data.sets : ''}
-						onBlur={e =>
+						onBlur={e => {
+							if (!sessionId) {
+								console.error('Session ID is undefined')
+								return
+							}
+
 							handleUpdate({
 								sessionId,
 								exerciseIndex: index,
 								sets: parseInt(e.target.value, 10),
 								mode,
 							})
-						}
+						}}
 					/>
 				)}
 			</div>
 			<div className={classes.exerciseReps}>
 				{mode === 'completed' && typeof data.reps === 'object' && 'actual' in data.reps ? (
 					<>
-						<DialogRoot placement={'center'}>
+						<DialogRoot
+							open={isRepsModalOpen}
+							onOpenChange={details => setRepsModalOpen(details.open)}
+							placement={'center'}
+						>
 							<DialogTrigger asChild>
-								<button className={classes.editButton}>
+								<button onClick={() => handleOpenModal('reps')} className={classes.editButton}>
 									{data.reps.actual} ({formatDifference(data.reps.difference)})
 								</button>
 							</DialogTrigger>
@@ -155,6 +194,7 @@ export const BlockExercise = ({ mode, data, sessionId, index }: IBlockExercisePr
 										type='number'
 										className={classes.inputField}
 										placeholder='Enter reps count'
+										defaultValue={data.reps.actual}
 										value={inputValue}
 										onChange={e => setInputValue(e.target.value)}
 										onKeyDown={e => {
@@ -170,14 +210,19 @@ export const BlockExercise = ({ mode, data, sessionId, index }: IBlockExercisePr
 					<input
 						type='number'
 						defaultValue={typeof data.reps === 'number' ? data.reps : ''}
-						onBlur={e =>
+						onBlur={e => {
+							if (!sessionId) {
+								console.error('Session ID is undefined')
+								return
+							}
+
 							handleUpdate({
 								sessionId,
 								exerciseIndex: index,
 								reps: parseInt(e.target.value, 10),
 								mode,
 							})
-						}
+						}}
 					/>
 				)}
 			</div>
