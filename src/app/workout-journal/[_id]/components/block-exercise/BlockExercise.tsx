@@ -1,8 +1,10 @@
 'use client'
 
 import { DialogBody, DialogContent, DialogHeader, DialogRoot, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
+import { useDeleteExercise } from '@/shared/hooks/useDeleteExercise'
 import { useUpdateExerciseValues } from '@/shared/hooks/useUpdateExerciseValues'
 import { IExercise, IProgressExercise } from '@/shared/types/exercise'
+import { X } from 'lucide-react'
 import { useState } from 'react'
 import { Id } from '../../../../../../convex/_generated/dataModel'
 import classes from './BlockExercise.module.scss'
@@ -16,20 +18,37 @@ interface IBlockExerciseProps {
 
 export const BlockExercise = ({ mode, data, sessionId, index }: IBlockExerciseProps) => {
 	const handleUpdate = useUpdateExerciseValues()
+	const handleDelete = useDeleteExercise()
 
 	const formatDifference = (difference: number) => (difference > 0 ? `+${difference}` : difference.toString())
 
 	const [isWeightModalOpen, setWeightModalOpen] = useState(false)
 	const [isSetsModalOpen, setSetsModalOpen] = useState(false)
 	const [isRepsModalOpen, setRepsModalOpen] = useState(false)
+	const [isDeleteModalOpen, setDeleteModalOpen] = useState(false)
 
 	const [inputValue, setInputValue] = useState('')
+
+	const handleDeleteConfirm = async () => {
+		if (!sessionId) {
+			console.error('Session ID is undefined')
+			return
+		}
+
+		try {
+			await handleDelete({ sessionId, exerciseIndex: index })
+			setDeleteModalOpen(false)
+		} catch (error) {
+			console.error('Error deleting exercise:', error)
+		}
+	}
 
 	const handleCloseModal = () => {
 		setInputValue('')
 		setWeightModalOpen(false)
 		setSetsModalOpen(false)
 		setRepsModalOpen(false)
+		setDeleteModalOpen(false)
 	}
 
 	const handleOpenModal = (field: 'weight' | 'sets' | 'reps') => {
@@ -226,6 +245,38 @@ export const BlockExercise = ({ mode, data, sessionId, index }: IBlockExercisePr
 					/>
 				)}
 			</div>
+			{mode === 'planned' && (
+				<>
+					<button className={classes.exerciseDelete} onClick={() => setDeleteModalOpen(true)}>
+						<X size={20} />
+					</button>
+					<DialogRoot
+						open={isDeleteModalOpen}
+						onOpenChange={details => setDeleteModalOpen(details.open)}
+						placement={'center'}
+					>
+						<DialogContent className={classes.dialogContent}>
+							<DialogHeader style={{ textAlign: 'center' }}>
+								<DialogTitle>Delete Exercise</DialogTitle>
+							</DialogHeader>
+							<DialogBody
+								className={classes.dialogBody}
+								style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+							>
+								<h6 className={classes.deleteTitle}>Are you sure you want to delete this exercise?</h6>
+								<div className={classes.deleteButtons}>
+									<button className={classes.cancelButton} onClick={handleCloseModal}>
+										No
+									</button>
+									<button className={classes.confirmButton} onClick={handleDeleteConfirm}>
+										Yes
+									</button>
+								</div>
+							</DialogBody>
+						</DialogContent>
+					</DialogRoot>
+				</>
+			)}
 		</li>
 	)
 }

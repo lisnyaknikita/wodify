@@ -188,3 +188,25 @@ export const updateExerciseValues = mutation({
 		return { success: true }
 	},
 })
+
+export const deleteExercise = mutation({
+	args: {
+		sessionId: v.id('sessions'),
+		exerciseIndex: v.number(),
+	},
+	handler: async (ctx, { sessionId, exerciseIndex }) => {
+		const session = await ctx.db.get(sessionId)
+
+		if (!session) {
+			throw new Error('Session not found')
+		}
+
+		const updatedPlan = session.plan.filter((_, index) => index !== exerciseIndex)
+
+		const updatedCompleted = session.completed.filter((_, index) => index !== exerciseIndex)
+
+		await ctx.db.patch(sessionId, { plan: updatedPlan, completed: updatedCompleted })
+
+		return { success: true }
+	},
+})
