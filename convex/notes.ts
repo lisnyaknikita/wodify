@@ -1,5 +1,5 @@
 import { v } from 'convex/values'
-import { query } from './_generated/server'
+import { mutation, query } from './_generated/server'
 import { auth } from './auth'
 
 export const getNoteBySessionId = query({
@@ -62,5 +62,21 @@ export const getLastNotes = query({
 			.take(10)
 
 		return notes
+	},
+})
+
+export const updateNote = mutation({
+	args: {
+		noteId: v.id('notes'),
+		content: v.string(),
+	},
+	handler: async (ctx, { noteId, content }) => {
+		const note = await ctx.db.get(noteId)
+
+		if (!note) {
+			throw new Error('Note not found')
+		}
+
+		await ctx.db.patch(noteId, { content })
 	},
 })

@@ -27,6 +27,8 @@
 .noteText {
 	font-size: 16px;
 	color: var(--text);
+	max-height: 600px;
+	overflow-y: auto;
 
 	@media screen and (max-width: 660px) {
 		max-height: 700px;
@@ -35,5 +37,45 @@
 
 	@media screen and (max-width: 500px) {
 		max-height: 480px;
+	}
+}
+
+.editMode {
+}
+
+.noteTextArea {
+	background-color: transparent;
+	border: none;
+	border-bottom: 1px solid var(--text);
+	resize: none;
+	outline: none;
+	width: 100%;
+	height: 600px;
+	overflow-y: auto;
+}
+
+.actions {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+
+	> button {
+		padding: 3px 10px;
+		border-radius: 10px;
+		border: 1px solid var(--text);
+		font-size: 18px;
+		transition: all 0.2s;
+	}
+}
+
+.saveButton {
+	&:hover {
+		background-color: #0e701b;
+	}
+}
+
+.cancelButton {
+	&:hover {
+		background-color: #a94848;
 	}
 }
