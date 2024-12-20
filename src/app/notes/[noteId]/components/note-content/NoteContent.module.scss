@@ -3,6 +3,8 @@
 	background-color: var(--primary);
 	border-radius: 20px;
 	padding: 10px;
+	position: relative;
+	min-height: 300px;
 
 	@media screen and (max-width: 1024px) {
 		flex-basis: 75%;

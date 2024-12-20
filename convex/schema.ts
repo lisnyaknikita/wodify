@@ -24,14 +24,20 @@ const schema = defineSchema({
 				weight: v.number(),
 			})
 		),
-		note: v.object({
-			id: v.string(),
-			content: v.string(),
-		}),
 	})
 		.index('by_date', ['date'])
 		.index('by_user_id', ['userId'])
 		.index('by_user_id_date', ['userId', 'date']),
+	notes: defineTable({
+		content: v.string(),
+		title: v.string(),
+		date: v.string(),
+		userId: v.id('users'),
+		sessionId: v.id('sessions'),
+	})
+		.index('by_user_id_date', ['userId', 'date'])
+		.index('by_user_id', ['userId'])
+		.index('by_session_id', ['sessionId']),
 })
 
 export default schema

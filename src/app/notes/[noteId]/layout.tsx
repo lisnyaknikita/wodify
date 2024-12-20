@@ -3,9 +3,9 @@ import { Provider } from '@/components/ui/provider'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { MobileMenu } from '../../components/layout/mobile-menu/MobileMenu'
-import { NavigationList } from '../../components/layout/navigation-list/NavigationList'
-import { Profile } from '../../components/layout/profile/Profile'
+import { MobileMenu } from '@/components/layout/mobile-menu/MobileMenu'
+import { NavigationList } from '@/components/layout/navigation-list/NavigationList'
+import { Profile } from '@/components/layout/profile/Profile'
 
 import classes from './notes.module.scss'
 

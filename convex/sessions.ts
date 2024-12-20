@@ -107,7 +107,14 @@ export const createSession = mutation({
 			userId: userId,
 			plan: [],
 			completed: [],
-			note: { id: '', content: '' },
+		})
+
+		await ctx.db.insert('notes', {
+			content: '',
+			title: args.title,
+			date: args.date,
+			userId: userId,
+			sessionId: sessionId,
 		})
 
 		return sessionId

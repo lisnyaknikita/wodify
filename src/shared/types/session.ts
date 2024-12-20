@@ -18,8 +18,4 @@ export interface ISession {
 		reps: number
 		weight: number
 	}[]
-	note: {
-		id: string
-		content: string
-	}
 }

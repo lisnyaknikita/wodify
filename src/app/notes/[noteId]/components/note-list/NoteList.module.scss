@@ -2,6 +2,8 @@
 	border-radius: 20px;
 	background-color: var(--primary);
 	flex-basis: 30%;
+	position: relative;
+	min-height: 50px;
 
 	@media screen and (max-width: 1024px) {
 		flex-basis: 25%;
@@ -37,6 +39,12 @@
 		}
 	}
 
+	&:global(.active) {
+		.noteLink {
+			background-color: #363636;
+		}
+	}
+
 	@media screen and (max-width: 768px) {
 		& + .noteItem {
 			margin-top: 20px;
@@ -68,6 +76,7 @@
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	transition: background-color 0.2s;
+	height: 100%;
 
 	@media screen and (min-width: 769px) {
 		&:hover {
