@@ -74,6 +74,9 @@ export const NoteContent = () => {
 						className={classes.noteTextArea}
 						value={noteContent}
 						onChange={e => setNoteContent(e.target.value)}
+						onKeyDown={e => {
+							if (e.key === 'Escape') handleCancel()
+						}}
 						autoFocus
 					/>
 					<div className={classes.actions}>

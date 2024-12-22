@@ -20,9 +20,11 @@ export const NavigationList = () => {
 				</Link>
 			</li>
 			<li className={classes.navigationItem}>
-				<Link className={classes.navigationLink} href={`/notes/${data[0]._id}`}>
-					Notes
-				</Link>
+				{data && (
+					<Link className={classes.navigationLink} href={`/notes/${data[0]._id}`}>
+						Notes
+					</Link>
+				)}
 			</li>
 			<li className={classes.navigationItem}>
 				<Link className={classes.navigationLink} href={'/progress'}>
