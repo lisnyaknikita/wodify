@@ -1,8 +1,12 @@
+'use client'
 import Link from 'next/link'
 
+import { useGetLastNotes } from '@/shared/hooks/useGetLastNotes'
 import classes from './NavigationList.module.scss'
 
 export const NavigationList = () => {
+	const { data } = useGetLastNotes()
+
 	return (
 		<ul className={classes.navigationList}>
 			<li className={classes.navigationItem}>
@@ -16,9 +20,11 @@ export const NavigationList = () => {
 				</Link>
 			</li>
 			<li className={classes.navigationItem}>
-				<Link className={classes.navigationLink} href={'/notes'}>
-					Notes
-				</Link>
+				{data && (
+					<Link className={classes.navigationLink} href={`/notes/${data[0]._id}`}>
+						Notes
+					</Link>
+				)}
 			</li>
 			<li className={classes.navigationItem}>
 				<Link className={classes.navigationLink} href={'/progress'}>

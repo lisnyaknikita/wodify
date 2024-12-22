@@ -27,7 +27,7 @@ export const LastNote = ({ lastSession }: ILastNoteProps) => {
 			<h3 className={classes.noteTitle}>
 				Note from {`${lastSession.data.title}(${format(parseISO(lastSession.data.date), 'MMMM, dd')})`}
 			</h3>
-			<p className={classes.noteText}>{lastSession.data.note.content}</p>
+			{/* <p className={classes.noteText}>{lastSession.data.note.content}</p> */}
 		</div>
 	)
 }

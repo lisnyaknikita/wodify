@@ -71,9 +71,6 @@ export const DayCard = ({ day, sessions }: IDayCardProps) => {
 						<span className={classes.planRow}>{planSummary.totalSets} sets</span>
 						<span className={classes.planRow}>{planSummary.totalReps} repetitions</span>
 					</div>
-					<Link className={classes.noteLink} href={'/note'}>
-						Note
-					</Link>
 				</>
 			) : (
 				<DialogRoot placement={'center'}>
