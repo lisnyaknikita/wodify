@@ -92,6 +92,26 @@ export const getSessionExercises = query({
 	},
 })
 
+export const getCompletedExercisesByMonth = query({
+	args: { startDate: v.string(), endDate: v.string() },
+	handler: async (ctx, { startDate, endDate }) => {
+		const userId = await auth.getUserId(ctx)
+
+		if (!userId) {
+			throw new Error('User is not authenticated')
+		}
+
+		const sessions = await ctx.db
+			.query('sessions')
+			.withIndex('by_user_id_date', q => q.eq('userId', userId).gte('date', startDate).lte('date', endDate))
+			.collect()
+
+		const completedExercises = sessions.flatMap(session => session.completed)
+
+		return completedExercises
+	},
+})
+
 export const createSession = mutation({
 	args: { date: v.string(), title: v.string() },
 	handler: async (ctx, args) => {

@@ -1,0 +1,63 @@
+.rootAccordion {
+	width: 1000px;
+	margin: 0 auto;
+	border-radius: 10px;
+}
+
+.accordionItem {
+	padding: 10px;
+}
+
+.accordionTrigger {
+	color: var(--text);
+	font-size: 20px;
+}
+
+.accordionContent {
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.metric {
+	border: 1px solid #6d6d6d;
+	padding: 5px;
+	font-size: 18px;
+}
+
+.value {
+	border: 1px solid #6d6d6d;
+	padding: 5px;
+	font-size: 18px;
+}
+
+.metricValue {
+	border: 1px solid #6d6d6d;
+	padding: 5px;
+	font-size: 16px;
+}
+
+.valueValue {
+	border: 1px solid #6d6d6d;
+	padding: 5px;
+	font-size: 16px;
+}
+
+.positiveChange {
+	> .valueValue {
+		background-color: rgb(6, 87, 6);
+	}
+}
+
+.retention {
+	> .valueValue {
+		background-color: rgb(140, 140, 1);
+	}
+}
+
+.negativeChange {
+	> .valueValue {
+		background-color: rgb(156, 3, 3);
+	}
+}
