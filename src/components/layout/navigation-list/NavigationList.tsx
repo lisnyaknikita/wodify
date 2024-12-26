@@ -19,13 +19,13 @@ export const NavigationList = () => {
 					Weekly plan
 				</Link>
 			</li>
-			<li className={classes.navigationItem}>
-				{data && (
+			{data && data[0]?._id ? (
+				<li className={classes.navigationItem}>
 					<Link className={classes.navigationLink} href={`/notes/${data[0]._id}`}>
 						Notes
 					</Link>
-				)}
-			</li>
+				</li>
+			) : null}
 			<li className={classes.navigationItem}>
 				<Link className={classes.navigationLink} href={'/progress'}>
 					Progress
