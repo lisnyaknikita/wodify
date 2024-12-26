@@ -58,7 +58,9 @@ export const ProgressAccordion = ({ startDate, endDate }: { startDate: string; e
 									}
 								>
 									<td className={classes.metricValue}>Weight change</td>
-									<td className={classes.valueValue}>{stats.weightChange} kg</td>
+									<td className={classes.valueValue}>
+										{`${stats.weightChange > 0 ? '+' : ''} ${stats.weightChange}`} kg
+									</td>
 								</tr>
 								<tr
 									className={
@@ -70,7 +72,7 @@ export const ProgressAccordion = ({ startDate, endDate }: { startDate: string; e
 									}
 								>
 									<td className={classes.metricValue}>Sets change</td>
-									<td className={classes.valueValue}>{stats.setsChange}</td>
+									<td className={classes.valueValue}>{`${stats.setsChange > 0 ? '+' : ''} ${stats.setsChange}`}</td>
 								</tr>
 								<tr
 									className={
@@ -82,7 +84,7 @@ export const ProgressAccordion = ({ startDate, endDate }: { startDate: string; e
 									}
 								>
 									<td className={classes.metricValue}>Reps change</td>
-									<td className={classes.valueValue}>{stats.repsChange}</td>
+									<td className={classes.valueValue}>{`${stats.repsChange > 0 ? '+' : ''} ${stats.repsChange}`}</td>
 								</tr>
 							</tbody>
 						</table>
