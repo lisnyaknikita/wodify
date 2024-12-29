@@ -28,7 +28,7 @@ export const calculateExerciseStats = (exercises: IExercise[]): ExerciseStats[] 
 		const lastSession = exerciseData[exerciseData.length - 1]
 
 		const totalSets = exerciseData.reduce((sum, ex) => sum + ex.sets, 0)
-		const totalReps = exerciseData.reduce((sum, ex) => sum + ex.reps, 0)
+		const totalReps = exerciseData.reduce((sum, ex) => sum + ex.sets * ex.reps, 0)
 
 		return {
 			exercise: exerciseName,
