@@ -7,14 +7,19 @@ import { BoardBlock } from './components/board-block/BoardBlock'
 import { calculateProgress } from '@/shared/helpers/calculateProgress'
 import { useGetNoteBySessionId } from '@/shared/hooks/useGetNoteBySessionId'
 import { useGetSessionById } from '@/shared/hooks/useGetSessionById'
+
 import { Loader } from 'lucide-react'
+
 import { useParams } from 'next/navigation'
+
 import classes from './workout-journal.module.scss'
 
 export default function WorkoutJournalPage() {
 	const { _id } = useParams()
 
+	//@ts-expect-error ...
 	const { data: session, isLoading: isSessionLoading } = useGetSessionById({ sessionId: _id })
+	//@ts-expect-error ...
 	const { data: note, isLoading: isNoteLoading } = useGetNoteBySessionId({ sessionId: _id })
 
 	if (isSessionLoading || isNoteLoading || !session || !note) {

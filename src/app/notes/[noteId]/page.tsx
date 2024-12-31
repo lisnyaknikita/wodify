@@ -16,6 +16,7 @@ import {
 	DrawerTitle,
 	DrawerTrigger,
 } from '@/components/ui/drawer'
+
 import { Menu } from 'lucide-react'
 
 import { useIsMobile } from '@/shared/hooks/useIsMobile'
@@ -26,7 +27,7 @@ export default function NotesPage() {
 	const [open, setOpen] = useState(false)
 
 	const isMobile = useIsMobile()
-	//TODO: fetch notes list(gpt)
+
 	return (
 		<main className={classes.main}>
 			<div className={classes.container}>

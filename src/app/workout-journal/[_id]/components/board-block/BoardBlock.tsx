@@ -1,10 +1,16 @@
 import { DialogBody, DialogContent, DialogHeader, DialogRoot, DialogTitle } from '@/components/ui/dialog'
+
 import { useAddExercise } from '@/shared/hooks/useAddExercise'
 import { IExercise, IProgressExercise } from '@/shared/types/exercise'
+
 import { Loader } from 'lucide-react'
+
 import { useState } from 'react'
+
 import { Id } from '../../../../../../convex/_generated/dataModel'
+
 import { BlockExercise } from '../block-exercise/BlockExercise'
+
 import classes from './BoardBlock.module.scss'
 
 interface IBoardBlockProps {

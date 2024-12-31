@@ -1,12 +1,17 @@
 'use client'
 
 import { DialogBody, DialogContent, DialogHeader, DialogRoot, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
+
 import { useDeleteExercise } from '@/shared/hooks/useDeleteExercise'
 import { useUpdateExerciseValues } from '@/shared/hooks/useUpdateExerciseValues'
 import { IExercise, IProgressExercise } from '@/shared/types/exercise'
+
 import { X } from 'lucide-react'
+
 import { useState } from 'react'
+
 import { Id } from '../../../../../../convex/_generated/dataModel'
+
 import classes from './BlockExercise.module.scss'
 
 interface IBlockExerciseProps {

@@ -65,6 +65,24 @@ export const getLastNotes = query({
 	},
 })
 
+export const getLastNote = query({
+	handler: async ctx => {
+		const userId = await auth.getUserId(ctx)
+
+		if (!userId) {
+			return null
+		}
+
+		const lastNote = await ctx.db
+			.query('notes')
+			.withIndex('by_user_id', q => q.eq('userId', userId))
+			.order('desc')
+			.first()
+
+		return lastNote || null
+	},
+})
+
 export const updateNote = mutation({
 	args: {
 		noteId: v.id('notes'),

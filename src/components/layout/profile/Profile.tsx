@@ -8,12 +8,21 @@ import { useAuthActions } from '@convex-dev/auth/react'
 
 import { Loader } from 'lucide-react'
 
+import { useRouter } from 'next/navigation'
 import classes from './Profile.module.scss'
 
 export const Profile = () => {
 	const { signOut } = useAuthActions()
 
 	const { data, isLoading } = useCurrentUser()
+
+	const router = useRouter()
+
+	const handleLogout = async () => {
+		await signOut()
+		router.replace('/auth')
+		window.location.href = '/auth'
+	}
 
 	if (isLoading) return <Loader />
 
@@ -32,7 +41,7 @@ export const Profile = () => {
 								<span>Email</span>
 								<a href={`mailto:${data.email}`}>{data.email}</a>
 							</div>
-							<button onClick={() => signOut()} className={classes.logoutButton}>
+							<button onClick={handleLogout} className={classes.logoutButton}>
 								Logout
 							</button>
 						</PopoverBody>

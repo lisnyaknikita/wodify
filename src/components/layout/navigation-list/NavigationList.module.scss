@@ -22,6 +22,10 @@
 		color: var(--secondary);
 	}
 
+	&:global(.active) {
+		color: var(--secondary);
+	}
+
 	@media screen and (max-width: 1440px) {
 		font-size: 22px;
 	}

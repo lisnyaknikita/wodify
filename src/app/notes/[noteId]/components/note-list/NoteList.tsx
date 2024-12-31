@@ -3,7 +3,9 @@ import Link from 'next/link'
 import { useGetLastNotes } from '@/shared/hooks/useGetLastNotes'
 
 import { format, parseISO } from 'date-fns'
+
 import { Loader } from 'lucide-react'
+
 import { useParams } from 'next/navigation'
 
 import classes from './NoteList.module.scss'

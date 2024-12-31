@@ -50,6 +50,11 @@
 	line-height: 1.2;
 	margin-bottom: 25px;
 	text-align: center;
+	transition: color 0.2s;
+
+	&:hover {
+		color: #1f1f1f;
+	}
 
 	@media screen and (max-width: 900px) {
 		font-size: 26px;
