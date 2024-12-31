@@ -3,7 +3,7 @@ import { api } from '../../../convex/_generated/api'
 import { Id } from '../../../convex/_generated/dataModel'
 
 interface UseGetSessionByIdProps {
-	sessionId: Id<'sessions'> | string
+	sessionId: Id<'sessions'>
 }
 
 export const useGetSessionById = ({ sessionId }: UseGetSessionByIdProps) => {

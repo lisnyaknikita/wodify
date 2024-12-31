@@ -9,11 +9,16 @@ import { useParams } from 'next/navigation'
 import { useGetNoteById } from '@/shared/hooks/useGetNoteById'
 import { useUpdateNote } from '@/shared/hooks/useUpdateNote'
 
+import { Id } from '../../../../../../convex/_generated/dataModel'
+
 import classes from './NoteContent.module.scss'
 
 export const NoteContent = () => {
 	const { noteId } = useParams()
-	const { data, isLoading } = useGetNoteById(noteId)
+	const validNoteId = noteId && typeof noteId === 'string' ? (noteId as Id<'notes'>) : undefined
+
+	//@ts-expect-error ...
+	const { data, isLoading } = useGetNoteById(validNoteId)
 
 	const updateNote = useUpdateNote()
 
@@ -30,12 +35,13 @@ export const NoteContent = () => {
 	}
 
 	const handleSave = async () => {
-		if (!noteId || !noteContent.trim()) return
+		if (!validNoteId || !noteContent.trim()) return
+		// if (!noteId || !noteContent.trim()) return
 
 		setIsSaving(true)
 		try {
 			await updateNote({
-				noteId,
+				noteId: validNoteId,
 				content: noteContent.trim(),
 			})
 			setEditMode(false)

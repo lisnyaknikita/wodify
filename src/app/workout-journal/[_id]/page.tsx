@@ -17,7 +17,9 @@ import classes from './workout-journal.module.scss'
 export default function WorkoutJournalPage() {
 	const { _id } = useParams()
 
+	//@ts-expect-error ...
 	const { data: session, isLoading: isSessionLoading } = useGetSessionById({ sessionId: _id })
+	//@ts-expect-error ...
 	const { data: note, isLoading: isNoteLoading } = useGetNoteBySessionId({ sessionId: _id })
 
 	if (isSessionLoading || isNoteLoading || !session || !note) {
