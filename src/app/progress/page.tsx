@@ -1,4 +1,5 @@
 import { getMonthBounds } from '@/shared/helpers/getMonthBounds'
+
 import { ProgressAccordion } from './components/progress-accordion/ProgressAccordion'
 
 import classes from './progress-page.module.scss'

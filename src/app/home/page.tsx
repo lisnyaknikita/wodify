@@ -4,9 +4,9 @@ import { HomeCalendar } from './components/home-calendar/HomeCalendar'
 import { LastNote } from './components/last-note/LastNote'
 import { LastTrainingSession } from './components/last-training-session/LastTrainingSession'
 
+import { useGetLastNote } from '@/shared/hooks/useGetLastNote'
 import { useGetLastSession } from '@/shared/hooks/useGetLastSession'
 
-import { useGetLastNote } from '@/shared/hooks/useGetLastNote'
 import classes from './home-page.module.scss'
 
 export default function HomePage() {

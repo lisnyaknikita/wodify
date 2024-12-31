@@ -7,8 +7,11 @@ import { BoardBlock } from './components/board-block/BoardBlock'
 import { calculateProgress } from '@/shared/helpers/calculateProgress'
 import { useGetNoteBySessionId } from '@/shared/hooks/useGetNoteBySessionId'
 import { useGetSessionById } from '@/shared/hooks/useGetSessionById'
+
 import { Loader } from 'lucide-react'
+
 import { useParams } from 'next/navigation'
+
 import classes from './workout-journal.module.scss'
 
 export default function WorkoutJournalPage() {

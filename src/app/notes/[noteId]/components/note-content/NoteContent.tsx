@@ -1,10 +1,14 @@
-import { useGetNoteById } from '@/shared/hooks/useGetNoteById'
-import { format, parseISO } from 'date-fns'
-import { Loader } from 'lucide-react'
-import { useParams } from 'next/navigation'
 import { useState } from 'react'
 
+import { format, parseISO } from 'date-fns'
+
+import { Loader } from 'lucide-react'
+
+import { useParams } from 'next/navigation'
+
+import { useGetNoteById } from '@/shared/hooks/useGetNoteById'
 import { useUpdateNote } from '@/shared/hooks/useUpdateNote'
+
 import classes from './NoteContent.module.scss'
 
 export const NoteContent = () => {
