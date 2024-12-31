@@ -45,7 +45,7 @@
 	transition: background-color 0.2s;
 
 	&:hover {
-		background-color: #ca965e;
+		background-color: var(--primary);
 	}
 
 	@media screen and (max-width: 1440px) {
